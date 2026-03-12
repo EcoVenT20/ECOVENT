@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { AdminLayout } from "./Dashboard";
-import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -58,9 +57,6 @@ const emptyProject = {
 };
 
 export default function AdminProjects() {
-  // Protect the page - redirect to login if not authenticated
-  useAuth({ redirectOnUnauthenticated: true, redirectPath: "/login" });
-  
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);

@@ -106,6 +106,7 @@ export const appRouter = router({
         console.log('Setting cookie');
 
         const cookieOptions = getSessionCookieOptions(ctx.req);
+        console.log('[Auth] setting session cookie with options', cookieOptions);
         ctx.res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
 
         return { success: true };

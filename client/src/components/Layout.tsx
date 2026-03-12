@@ -27,7 +27,7 @@ export function Header() {
     { name: "أدوات AI", href: "/ai-tools", icon: Sparkles },
     { name: "الأسئلة الشائعة", href: "/faq" },
     { name: "تواصل معنا", href: "/contact" },
-    { name: "الإدارة", href: "/admin" },
+    //{ name: "الإدارة", href: "/admin" },
   ];
 
   return (

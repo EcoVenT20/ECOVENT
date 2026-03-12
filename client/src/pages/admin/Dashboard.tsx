@@ -1,4 +1,3 @@
-import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Link, useLocation } from "wouter";
 import { 
@@ -8,7 +7,6 @@ import {
   FileText, 
   Settings,
   LayoutDashboard,
-  LogOut,
   Menu,
   X,
   ChevronLeft,
@@ -23,7 +21,6 @@ interface AdminLayoutProps {
 }
 
 export function AdminLayout({ children, title }: AdminLayoutProps) {
-  const { user, logout } = useAuth();
   const [location] = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -63,7 +60,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
             <span className="text-sm">العودة للموقع</span>
           </Link>
           <h2 className="text-xl font-bold mt-4">ECOVENT</h2>
-          <p className="text-sm text-gray-400">لوحة الإدارة</p>
+          <p className="text-sm text-gray-400"></p>
         </div>
 
         <nav className="p-4 space-y-2">
@@ -82,25 +79,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
           ))}
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-              <span className="text-primary font-bold">{user?.name?.[0] || 'A'}</span>
-            </div>
-            <div>
-              <p className="font-medium text-sm">{user?.name || 'مدير'}</p>
-              <p className="text-xs text-gray-400">{user?.email || ''}</p>
-            </div>
-          </div>
-          <Button 
-            variant="ghost" 
-            className="w-full justify-start text-gray-300 hover:text-white hover:bg-white/10"
-            onClick={() => logout()}
-          >
-            <LogOut className="w-4 h-4 ml-2" />
-            تسجيل الخروج
-          </Button>
-        </div>
+
       </aside>
 
       {/* Overlay for mobile */}
@@ -123,9 +102,6 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
 }
 
 export default function AdminDashboard() {
-  // Protect the page - redirect to login if not authenticated
-  useAuth({ redirectOnUnauthenticated: true, redirectPath: "/login" });
-  
   const productsQuery = trpc.admin.products.list.useQuery();
   const projectsQuery = trpc.admin.projects.list.useQuery();
   const contactsQuery = trpc.admin.contacts.list.useQuery();

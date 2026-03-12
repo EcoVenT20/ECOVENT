@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
-import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -9,9 +8,6 @@ import { FileUpload } from "@/components/FileUpload";
 import { Loader2, Save, Image as ImageIcon } from "lucide-react";
 
 export default function AdminSettings() {
-  // Protect the page - redirect to login if not authenticated
-  useAuth({ redirectOnUnauthenticated: true, redirectPath: "/login" });
-  
   const { data: settings, isLoading, refetch } = trpc.admin.settings.list.useQuery();
   const upsertSetting = trpc.admin.settings.upsert.useMutation({
     onSuccess: () => {

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { AdminLayout } from "./Dashboard";
-import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
