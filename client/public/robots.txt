@@ -1,0 +1,25 @@
+# robots.txt for ECOVENT - Ventilation Solutions
+# https://www.ecovent-sa.com
+
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin
+Disallow: /admin/*
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /products
+Allow: /services
+Allow: /projects
+Allow: /blog
+Allow: /contact
+Allow: /quote
+
+# Sitemap location
+Sitemap: https://www.ecovent-sa.com/sitemap.xml
+
+# Crawl-delay (optional, helps prevent overloading)
+Crawl-delay: 1

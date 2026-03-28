@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE blog_articles SET featuredImage = '/images/blog/industrial-fans.jpg' WHERE slug = 'types-of-industrial-fans';\nUPDATE blog_articles SET featuredImage = '/images/blog/ventilation-system.jpg' WHERE slug = 'choosing-ventilation-system';\nUPDATE blog_articles SET featuredImage = '/images/blog/hvac-maintenance.jpg' WHERE slug = 'industrial-ventilation-maintenance';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 3GkR5vxFPJHLBYR.f4534ca470e4 --database fycVpKeLkwUQkZ2oAMuUxy --execute UPDATE blog_articles SET featuredImage = '/images/blog/industrial-fans.jpg' WHERE slug = 'types-of-industrial-fans';\nUPDATE blog_articles SET featuredImage = '/images/blog/ventilation-system.jpg' WHERE slug = 'choosing-ventilation-system';\nUPDATE blog_articles SET featuredImage = '/images/blog/hvac-maintenance.jpg' WHERE slug = 'industrial-ventilation-maintenance';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1999
+}
