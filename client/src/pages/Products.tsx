@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Fan, Wind, Settings, ArrowRight, Loader2 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
 
 // Default products data for when database is empty
 const defaultProducts = [
@@ -13,11 +14,11 @@ const defaultProducts = [
     nameEn: "Centrifugal Fans",
     descriptionAr: "مراوح طرد مركزي عالية الكفاءة مصممة للتطبيقات الصناعية الثقيلة. توفر تدفق هواء قوي ومستقر مع مستويات ضوضاء منخفضة.",
     category: "industrial",
-    imageUrl: "/images/blog/تصميم بدون عنوان.png",
+    imageUrl: "/images/blog/11 (3).png",
     specifications: JSON.stringify({
-      "معدل التدفق": "1,000 - 50,000 م³/ساعة",
-      "الضغط": "حتى 3,000 باسكال",
-      "درجة الحرارة": "-20 إلى +400 درجة مئوية",
+      "معدل التدفق": "حتى 52,000 م³/ساعة",
+      "الضغط": "حتى 2,500 باسكال",
+      "درجة الحرارة": "حتى 400°C",
       "المواد": "فولاذ كربوني / ستانلس ستيل"
     })
   },
@@ -27,11 +28,11 @@ const defaultProducts = [
     nameEn: "Industrial Axial Fans",
     descriptionAr: "مراوح محورية قوية للتهوية العامة والتبريد. مثالية للمستودعات والمصانع الكبيرة.",
     category: "industrial",
-    imageUrl: "/images/blog/whatsapp1.png",
+    imageUrl: "/images/blog/11.png",
     specifications: JSON.stringify({
-      "معدل التدفق": "5,000 - 200,000 م³/ساعة",
-      "الضغط": "حتى 1,500 باسكال",
-      "القطر": "400 - 2,000 مم",
+      "معدل التدفق": "حتى 184,000 م³/ساعة",
+      "الضغط": "حتى 800 باسكال",
+      "القطر": "حتى 1,600 مم",
       "الكفاءة": "حتى 85%"
     })
   },
@@ -41,10 +42,10 @@ const defaultProducts = [
     nameEn: "Smoke Extraction Systems",
     descriptionAr: "أنظمة شفط دخان متقدمة للسلامة من الحرائق، معتمدة وفق المعايير الدولية.",
     category: "safety",
-    imageUrl: "/images/blog/smoke22.png",
+    imageUrl: "/images/blog/smoke_extraction_system_diagram.png",
     specifications: JSON.stringify({
       "درجة الحرارة": "حتى 400°C لمدة 2 ساعة",
-      "الاعتماد": "EN 12101-3",
+      "الاعتماد": "ISO 9001, CE, UL LISTED",
       "التحكم": "أوتوماتيكي / يدوي",
       "التكامل": "مع أنظمة إنذار الحريق"
     })
@@ -55,12 +56,12 @@ const defaultProducts = [
     nameEn: "Roof Fans",
     descriptionAr: "مراوح سقف مقاومة للعوامل الجوية للتهوية الطبيعية والميكانيكية للمباني الصناعية والتجارية.",
     category: "commercial",
-    imageUrl: "/images/blog/rooftopfan.jpg",
+    imageUrl: "/images/blog/11 (2).png",
     specifications: JSON.stringify({
-      "معدل التدفق": "500 - 30,000 م³/ساعة",
-      "الحماية": "IP55",
-      "المواد": "ألومنيوم مطلي",
-      "الضمان": "5 سنوات"
+      "معدل التدفق": "حتى 50,000 م³/ساعة",
+      "الحماية": "IP55-Class F Insulation",
+      "المواد": "ألومنيوم مطلي أو حديد مجلفن",
+      "الضمان": "2 سنوات"
     })
   },
   {
@@ -74,7 +75,7 @@ const defaultProducts = [
       "الكفاءة": "85% - 99.995%",
       "الفئة": "G4 - U17",
       "الأبعاد": "مخصصة",
-      "العمر الافتراضي": "6-24 شهر"
+      
     })
   }
 ];
@@ -115,6 +116,12 @@ export default function Products() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans" dir="rtl">
+      <SEO
+        title="المنتجات | ECOVENT"
+        description="استكشفوا منتجات التهوية الصناعية المتطورة من ECOVENT. مراوح عالية الكفاءة وأنظمة تهويه احترافية للمصانع والمستودعات"
+        keywords="منتجات تهوية، مراوح صناعية، أنظمة تهويه، مراوح طرد مركزي، مراوح محورية، أنظمة شفط الدخان، ECOVENT"
+        canonical="https://www.ecovent-sa.com/products"
+      />
       <Header />
       
       <main className="flex-grow pt-20">

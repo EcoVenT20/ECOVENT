@@ -24,7 +24,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, Loader2, Star } from "lucide-react";
+import { Plus, Pencil, Trash2, Loader2, Star, Eye } from "lucide-react";
 import { FileUpload } from "@/components/FileUpload";
 
 interface Project {
@@ -211,6 +211,15 @@ export default function AdminProjects() {
                   </td>
                   <td className="p-4">
                     <div className="flex items-center gap-2">
+                      <a
+                        href={`/projects/${project.id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center w-8 h-8 rounded hover:bg-muted/10"
+                        aria-label="عرض المشروع"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </a>
                       <Button 
                         variant="ghost" 
                         size="icon"

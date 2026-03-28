@@ -19,8 +19,8 @@ import { Pencil, Trash2, Plus, Eye } from "lucide-react";
 import { ImageUpload } from "@/components/ImageUpload";
 
 export default function AdminBlog() {
-  // Protect the page - redirect to login if not authenticated
-  useAuth({ redirectOnUnauthenticated: true, redirectPath: "/login" });
+  // Keep auth info but do not auto-redirect to login
+  useAuth();
   
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingArticle, setEditingArticle] = useState<any>(null);
@@ -187,6 +187,16 @@ export default function AdminBlog() {
                 </div>
               </div>
               <div className="flex gap-2">
+                <a
+                  href={`/blog/${article.slug}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-1 rounded border border-border text-sm hover:bg-muted/10"
+                  aria-label="عرض المقال"
+                >
+                  <Eye className="h-4 w-4" />
+                  عرض
+                </a>
                 <Button
                   variant="outline"
                   size="sm"

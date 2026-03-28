@@ -3,13 +3,6 @@ import { SEO } from "@/components/SEO";
 import { CheckCircle2, Target, Eye, Award, Users, Factory, Globe } from "lucide-react";
 
 export default function About() {
-  const stats = [
-    { number: "15+", label: "سنوات خبرة" },
-    { number: "500+", label: "مشروع منجز" },
-    { number: "200+", label: "عميل راضٍ" },
-    { number: "50+", label: "مهندس متخصص" },
-  ];
-
   const values = [
     {
       icon: <Award className="w-8 h-8" />,
@@ -59,20 +52,6 @@ export default function About() {
               <p className="text-xl text-gray-300 leading-relaxed">
                 منذ تأسيسنا، نسعى لتقديم أفضل حلول التهوية الصناعية التي تلبي احتياجات السوق السعودي والخليجي
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="py-12 bg-primary">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center text-white">
-                  <p className="text-4xl md:text-5xl font-heading font-bold mb-2">{stat.number}</p>
-                  <p className="text-primary-foreground/80">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

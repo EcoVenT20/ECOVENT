@@ -1,337 +1,305 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Loader2, Sparkles, Download, CheckCircle2 } from "lucide-react";
-import { trpc } from "@/lib/trpc";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Calculator, Wind, Zap, CheckCircle, Fan } from "lucide-react";
 
-interface DesignFormData {
-  facilityType: string;
+interface FormData {
+  roomType: string;
   area: string;
   height: string;
-  workers: string;
+  occupants: string;
   activity: string;
-  pollutionLevel: string;
+}
+
+interface Results {
+  recommendedFan: string;
+  ductSize: string;
+  filters: string;
+  controls: string;
+  energyEfficiency: string;
+  additionalFeatures: string;
 }
 
 export default function AIVentilationDesigner() {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<DesignFormData>({
-    facilityType: "",
+  const [formData, setFormData] = useState<FormData>({
+    roomType: "",
     area: "",
     height: "",
-    workers: "",
+    occupants: "",
     activity: "",
-    pollutionLevel: "",
-  });
-  const [design, setDesign] = useState<any>(null);
-
-  const generateDesign = trpc.ai.generateVentilationDesign.useMutation({
-    onSuccess: (data) => {
-      setDesign(data);
-      setStep(3);
-    },
   });
 
-  const handleNext = () => {
-    if (step < 2) {
-      setStep(step + 1);
-    } else {
-      // Generate design
-      generateDesign.mutate(formData);
-    }
+  const [results, setResults] = useState<Results | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  const handleInputChange = (field: keyof FormData, value: string) => {
+    setFormData({ ...formData, [field]: value });
   };
 
-  const handleBack = () => {
-    if (step > 1) setStep(step - 1);
+  const calculateDesign = () => {
+    setIsCalculating(true);
+
+    // Simulate AI calculation based on ECOVENT products
+    setTimeout(() => {
+      const area = parseFloat(formData.area) || 0;
+      const height = parseFloat(formData.height) || 0;
+      const occupants = parseInt(formData.occupants) || 0;
+
+      // Basic calculations based on ASHRAE standards and ECOVENT product ranges
+      const volume = area * height;
+      let airChangesPerHour = 6; // Default for low activity
+
+      if (formData.activity === "high") {
+        airChangesPerHour = 15; // For factories, high activity
+      } else if (formData.activity === "medium") {
+        airChangesPerHour = 10; // For offices, moderate
+      }
+
+      // Add occupant factor (20 CFM per person)
+      const occupantAirflow = occupants * 20;
+      const totalAirflow = Math.max((volume * airChangesPerHour) / 60, occupantAirflow); // CFM
+
+      // Recommend ECOVENT fan based on airflow
+      let recommendedFan = "";
+      let ductSize = "";
+      let filters = "";
+      let controls = "";
+
+      if (totalAirflow <= 1000) {
+        recommendedFan = "ECOVENT Axial Fan 1000 CFM";
+        ductSize = "8-10 inch diameter duct";
+        filters = "Standard Pre-filter";
+        controls = "Basic Speed Control";
+      } else if (totalAirflow <= 5000) {
+        recommendedFan = "ECOVENT Centrifugal Fan 3000 CFM";
+        ductSize = "12-14 inch diameter duct";
+        filters = "HEPA Filter + Pre-filters";
+        controls = "Variable Frequency Drive (VFD)";
+      } else if (totalAirflow <= 10000) {
+        recommendedFan = "ECOVENT Industrial Blower 8000 CFM";
+        ductSize = "16-18 inch diameter duct";
+        filters = "HEPA + Activated Carbon Filters";
+        controls = "Smart PLC Control System";
+      } else {
+        recommendedFan = "ECOVENT High-Capacity Fan System 15000+ CFM";
+        ductSize = "20+ inch diameter duct";
+        filters = "Advanced Multi-stage Filtration";
+        controls = "IoT-Enabled Control System";
+      }
+
+      const design: Results = {
+        recommendedFan,
+        ductSize,
+        filters,
+        controls,
+        energyEfficiency: "IE3 Premium Efficiency Motor (95%+ efficiency)",
+        additionalFeatures: "Noise Reduction, Vibration Dampening, Remote Monitoring",
+      };
+
+      setResults(design);
+      setIsCalculating(false);
+    }, 2000);
   };
 
-  const handleReset = () => {
-    setStep(1);
+  const resetForm = () => {
     setFormData({
-      facilityType: "",
+      roomType: "",
       area: "",
       height: "",
-      workers: "",
+      occupants: "",
       activity: "",
-      pollutionLevel: "",
     });
-    setDesign(null);
+    setResults(null);
   };
 
-  const isStep1Valid = formData.facilityType && formData.area && formData.height;
-  const isStep2Valid = formData.workers && formData.activity && formData.pollutionLevel;
-
   return (
-    <Card className="p-8 bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-primary rounded-lg">
-          <Sparkles className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold">مساعد تصميم أنظمة التهوية الذكي</h3>
-          <p className="text-muted-foreground">
-            احصل على تصميم مخصص لنظام التهوية خلال دقائق
-          </p>
+    <section className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-bold mb-4">
+              <Calculator className="w-5 h-5" />
+              <span>مساعد تصميم ذكي</span>
+            </div>
+            <h2 className="text-4xl font-bold mb-4">مساعد تصميم أنظمة التهوية الذكي</h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              احصل على تصميم مخصص لنظام التهوية خلال دقائق. أدخل تفاصيل مساحتك واحصل على توصيات دقيقة من منتجات ECOVENT.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Form */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Wind className="w-6 h-6" />
+                  أدخل تفاصيل المساحة
+                </CardTitle>
+                <CardDescription>
+                  املأ البيانات التالية للحصول على تصميم مخصص من منتجاتنا
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="roomType">نوع الغرفة</Label>
+                    <Select value={formData.roomType} onValueChange={(value) => handleInputChange("roomType", value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="اختر نوع الغرفة" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="office">مكتب</SelectItem>
+                        <SelectItem value="factory">مصنع</SelectItem>
+                        <SelectItem value="warehouse">مستودع</SelectItem>
+                        <SelectItem value="restaurant">مطعم</SelectItem>
+                        <SelectItem value="hospital">مستشفى</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="activity">مستوى النشاط</Label>
+                    <Select value={formData.activity} onValueChange={(value) => handleInputChange("activity", value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="اختر مستوى النشاط" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="low">منخفض</SelectItem>
+                        <SelectItem value="medium">متوسط</SelectItem>
+                        <SelectItem value="high">عالي</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <Label htmlFor="area">المساحة (م²)</Label>
+                    <Input
+                      id="area"
+                      type="number"
+                      placeholder="مثال: 100"
+                      value={formData.area}
+                      onChange={(e) => handleInputChange("area", e.target.value)}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="height">الارتفاع (م)</Label>
+                    <Input
+                      id="height"
+                      type="number"
+                      placeholder="مثال: 3"
+                      value={formData.height}
+                      onChange={(e) => handleInputChange("height", e.target.value)}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="occupants">عدد الأشخاص</Label>
+                    <Input
+                      id="occupants"
+                      type="number"
+                      placeholder="مثال: 20"
+                      value={formData.occupants}
+                      onChange={(e) => handleInputChange("occupants", e.target.value)}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <Button
+                    onClick={calculateDesign}
+                    disabled={isCalculating || !formData.area || !formData.height}
+                    className="flex-1"
+                  >
+                    {isCalculating ? "جاري الحساب..." : "احسب التصميم"}
+                  </Button>
+                  <Button variant="outline" onClick={resetForm}>
+                    إعادة تعيين
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Results */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <CheckCircle className="w-6 h-6" />
+                  التصميم الموصى به
+                </CardTitle>
+                <CardDescription>
+                  {results ? "النتائج بناءً على منتجات ECOVENT" : "املأ النموذج للحصول على النتائج"}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {results ? (
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 gap-4">
+                      <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Fan className="w-5 h-5 text-primary" />
+                          <span className="font-semibold">المروحة الموصى بها</span>
+                        </div>
+                        <p className="text-2xl font-bold text-primary">{results.recommendedFan}</p>
+                      </div>
+
+                      <div className="p-4 bg-secondary/5 rounded-lg border border-secondary/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Wind className="w-5 h-5 text-secondary" />
+                          <span className="font-semibold">حجم القناة</span>
+                        </div>
+                        <p className="text-lg">{results.ductSize}</p>
+                      </div>
+
+                      <div className="p-4 bg-muted rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                          <span className="font-semibold">الفلاتر والتحكم</span>
+                        </div>
+                        <div className="space-y-1">
+                          <Badge variant="outline">{results.filters}</Badge>
+                          <Badge variant="outline">{results.controls}</Badge>
+                          <Badge variant="outline">{results.energyEfficiency}</Badge>
+                        </div>
+                      </div>
+
+                      <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Zap className="w-5 h-5 text-blue-600" />
+                          <span className="font-semibold">ميزات إضافية</span>
+                        </div>
+                        <p className="text-sm">{results.additionalFeatures}</p>
+                      </div>
+                    </div>
+
+                    <div className="pt-4 border-t">
+                      <p className="text-sm text-muted-foreground mb-4">
+                        هذه التوصيات مبنية على معايير ASHRAE ومنتجات ECOVENT. لتصميم دقيق، يرجى التواصل مع مهندسينا.
+                      </p>
+                      <Button className="w-full" asChild>
+                        <a href="/quote">اطلب عرض سعر مفصل</a>
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <Calculator className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-muted-foreground">
+                      املأ النموذج للحصول على تصميم مخصص من منتجات ECOVENT
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
-
-      {/* Progress Steps */}
-      <div className="flex items-center justify-between mb-8">
-        {[1, 2, 3].map((s) => (
-          <div key={s} className="flex items-center flex-1">
-            <div
-              className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                s <= step
-                  ? "bg-primary text-white"
-                  : "bg-muted text-muted-foreground"
-              }`}
-            >
-              {s < step || (s === 3 && design) ? (
-                <CheckCircle2 className="w-5 h-5" />
-              ) : (
-                s
-              )}
-            </div>
-            {s < 3 && (
-              <div
-                className={`flex-1 h-1 mx-2 ${
-                  s < step ? "bg-primary" : "bg-muted"
-                }`}
-              />
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Step 1: Basic Info */}
-      {step === 1 && (
-        <div className="space-y-6">
-          <div>
-            <Label htmlFor="facilityType">نوع المنشأة *</Label>
-            <Select
-              value={formData.facilityType}
-              onValueChange={(value) =>
-                setFormData({ ...formData, facilityType: value })
-              }
-            >
-              <SelectTrigger id="facilityType">
-                <SelectValue placeholder="اختر نوع المنشأة" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="factory">مصنع</SelectItem>
-                <SelectItem value="warehouse">مستودع</SelectItem>
-                <SelectItem value="workshop">ورشة</SelectItem>
-                <SelectItem value="kitchen">مطبخ صناعي</SelectItem>
-                <SelectItem value="laboratory">مختبر</SelectItem>
-                <SelectItem value="other">أخرى</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label htmlFor="area">مساحة المنشأة (متر مربع) *</Label>
-            <Input
-              id="area"
-              type="number"
-              placeholder="مثال: 500"
-              value={formData.area}
-              onChange={(e) =>
-                setFormData({ ...formData, area: e.target.value })
-              }
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="height">ارتفاع السقف (متر) *</Label>
-            <Input
-              id="height"
-              type="number"
-              placeholder="مثال: 6"
-              value={formData.height}
-              onChange={(e) =>
-                setFormData({ ...formData, height: e.target.value })
-              }
-            />
-          </div>
-
-          <div className="flex justify-end gap-3">
-            <Button
-              onClick={handleNext}
-              disabled={!isStep1Valid}
-              className="gap-2"
-            >
-              التالي
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {/* Step 2: Activity Details */}
-      {step === 2 && (
-        <div className="space-y-6">
-          <div>
-            <Label htmlFor="workers">عدد العاملين *</Label>
-            <Input
-              id="workers"
-              type="number"
-              placeholder="مثال: 20"
-              value={formData.workers}
-              onChange={(e) =>
-                setFormData({ ...formData, workers: e.target.value })
-              }
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="activity">نوع النشاط الصناعي *</Label>
-            <Select
-              value={formData.activity}
-              onValueChange={(value) =>
-                setFormData({ ...formData, activity: value })
-              }
-            >
-              <SelectTrigger id="activity">
-                <SelectValue placeholder="اختر نوع النشاط" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="welding">لحام وقطع معادن</SelectItem>
-                <SelectItem value="painting">دهان ورش</SelectItem>
-                <SelectItem value="chemical">عمليات كيميائية</SelectItem>
-                <SelectItem value="food">تصنيع أغذية</SelectItem>
-                <SelectItem value="textile">نسيج وملابس</SelectItem>
-                <SelectItem value="woodwork">نجارة وأخشاب</SelectItem>
-                <SelectItem value="assembly">تجميع وتعبئة</SelectItem>
-                <SelectItem value="other">أخرى</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label htmlFor="pollutionLevel">مستوى التلوث المتوقع *</Label>
-            <Select
-              value={formData.pollutionLevel}
-              onValueChange={(value) =>
-                setFormData({ ...formData, pollutionLevel: value })
-              }
-            >
-              <SelectTrigger id="pollutionLevel">
-                <SelectValue placeholder="اختر مستوى التلوث" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="low">منخفض (تهوية عامة)</SelectItem>
-                <SelectItem value="medium">متوسط (أدخنة خفيفة)</SelectItem>
-                <SelectItem value="high">عالي (أدخنة كثيفة أو غازات)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex justify-between gap-3">
-            <Button onClick={handleBack} variant="outline">
-              السابق
-            </Button>
-            <Button
-              onClick={handleNext}
-              disabled={!isStep2Valid || generateDesign.isPending}
-              className="gap-2"
-            >
-              {generateDesign.isPending ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  جاري التصميم...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4" />
-                  تصميم النظام
-                </>
-              )}
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {/* Step 3: Results */}
-      {step === 3 && design && (
-        <div className="space-y-6">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
-            <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" />
-            <div>
-              <h4 className="font-bold text-green-900 mb-1">
-                تم إنشاء التصميم بنجاح!
-              </h4>
-              <p className="text-green-700 text-sm">
-                تم تحليل بياناتك وإنشاء تصميم مخصص لنظام التهوية الأمثل لمنشأتك
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card className="p-4">
-              <h5 className="font-bold mb-2">معدل التدفق المطلوب</h5>
-              <p className="text-3xl font-bold text-primary">
-                {design.cfm.toLocaleString()} CFM
-              </p>
-              <p className="text-sm text-muted-foreground mt-1">
-                قدم مكعب في الدقيقة
-              </p>
-            </Card>
-
-            <Card className="p-4">
-              <h5 className="font-bold mb-2">عدد المراوح الموصى به</h5>
-              <p className="text-3xl font-bold text-primary">
-                {design.fanCount} مروحة
-              </p>
-              <p className="text-sm text-muted-foreground mt-1">
-                {design.fanType}
-              </p>
-            </Card>
-
-            <Card className="p-4">
-              <h5 className="font-bold mb-2">مدة التنفيذ</h5>
-              <p className="text-3xl font-bold text-primary">
-                {design.installationTime}
-              </p>
-              <p className="text-sm text-muted-foreground mt-1">
-                من تاريخ الطلب
-              </p>
-            </Card>
-          </div>
-
-          <Card className="p-4 bg-blue-50 border-blue-200">
-            <h5 className="font-bold mb-2">التوصيات</h5>
-            <ul className="space-y-2">
-              {design.recommendations.map((rec: string, index: number) => (
-                <li key={index} className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm">{rec}</span>
-                </li>
-              ))}
-            </ul>
-          </Card>
-
-          <div className="flex justify-between gap-3">
-            <Button onClick={handleReset} variant="outline">
-              تصميم جديد
-            </Button>
-            <div className="flex gap-3">
-              <Button variant="outline" className="gap-2">
-                <Download className="w-4 h-4" />
-                تحميل التقرير PDF
-              </Button>
-              <Button className="gap-2">طلب عرض سعر</Button>
-            </div>
-          </div>
-        </div>
-      )}
-    </Card>
+    </section>
   );
 }

@@ -14,7 +14,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-background font-sans" dir="rtl">
       <SEOHead 
         title="ايكوفينت - حلول تهوية صناعية متطورة | صنع في السعودية"
-        description="إيكوفنت - شركة رائدة في تصنيع وتوريد أنظمة التهوية الصناعية في السعودية. نقدم حلول تهوية مبتكرة للمصانع والمستودعات بأعلى معايير الجودة."
+        description="إيكوفنت - شركة رائدة في تصنيع وتوريد أنظمة التهوية الصناعية. نقدم أحدث أنظمة  التهوية المركزيه والمراوح المصممه خصيصا لتهوية المباني التجاريه والسكنيه بأعلى معايير الجوده والكفاءه."
         image="https://www.ecovent-sa.com/images/og-home.jpg"
         url="https://www.ecovent-sa.com/"
         type="website"
@@ -54,7 +54,7 @@ export default function Home() {
                 </h1>
                 
                 <p className="text-xl text-white/90 leading-relaxed max-w-xl">
-                  نقدم أحدث <Link href="/products" className="font-bold underline hover:text-secondary transition-colors">أنظمة التهوية الصناعية</Link> و<Link href="/products" className="font-bold underline hover:text-secondary transition-colors">المراوح الصناعية</Link> المصممة خصيصاً ل<strong>تهوية المصانع</strong> و<strong>تهوية المستودعات</strong> في <strong>السعودية</strong> بأعلى معايير الجودة والكفاءة. اطلع على <Link href="/faq" className="underline hover:text-secondary transition-colors">الأسئلة الشائعة</Link> لمعرفة المزيد.
+                  نقدم أحدث <Link href="/products" className="font-bold underline hover:text-secondary transition-colors">أنظمة التهوية المركزيه</Link> و<Link href="/products" className="font-bold underline hover:text-secondary transition-colors">المراوح </Link> المصممة خصيصاً ل<strong> لتهوية المباني التجاريه والسكنيه</strong><strong></strong>  بأعلى معايير الجودة والكفاءة. اطلع على <Link href="/faq" className="underline hover:text-secondary transition-colors">الأسئلة الشائعة</Link> لمعرفة المزيد.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -79,7 +79,7 @@ export default function Home() {
                 {[
                   { icon: <Fan className="w-8 h-8" />, title: "تهوية صناعية", desc: "أنظمة متطورة" },
                   { icon: <Settings className="w-8 h-8" />, title: "صيانة دورية", desc: "دعم مستمر" },
-                  { icon: <ShieldCheck className="w-8 h-8" />, title: "ضمان الجودة", desc: "ISO 9001" },
+                  { icon: <ShieldCheck className="w-8 h-8" />, title: "ضمان الجودة", desc: "EC/UL" },
                   { icon: <Wind className="w-8 h-8" />, title: "كفاءة عالية", desc: "توفير الطاقة" }
                 ].map((item, i) => (
                   <Card key={i} className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 group cursor-pointer">
@@ -105,7 +105,7 @@ export default function Home() {
               <h4 className="text-secondary font-bold tracking-wider uppercase mb-2">خدماتنا</h4>
               <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">حلول متكاملة لاحتياجاتك</h2>
               <p className="text-muted-foreground text-lg">
-                نقدم مجموعة شاملة من خدمات <strong>التهوية الصناعية</strong> و<strong>التكييف الصناعي</strong> لضمان كفاءة وسلامة أنظمة التهوية في منشأتك
+                نقدم مجموعة شاملة من خدمات <strong>التهوية الصناعية</strong> و لضمان كفاءة وسلامة أنظمة التهوية في منشأتك
               </p>
             </div>
 

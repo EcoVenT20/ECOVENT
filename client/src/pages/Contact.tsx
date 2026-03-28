@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { MapPin, Phone, Mail, Clock, Send, Loader2, CheckCircle2 } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -73,6 +74,12 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans" dir="rtl">
+      <SEO
+        title="اتصل بنا | ECOVENT"
+        description="تواصل مع ECOVENT للاستفسار عن منتجاتنا وخدماتنا. فريقنا جاهز للرد على جميع استفساراتك حول حلول التهوية"
+        keywords="تواصل معنا، استفسارات، خدمة العملاء، ECOVENT، السعودية"
+        canonical="https://www.ecovent-sa.com/contact"
+      />
       <Header />
       
       <main className="flex-grow pt-20">

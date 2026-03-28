@@ -1,8 +1,10 @@
 import { Header, Footer } from "@/components/Layout";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
-import { Loader2, Settings, Fan, Wind, ShieldCheck, Wrench, ClipboardCheck, Zap, HeadphonesIcon, CheckCircle2 } from "lucide-react";
+import { Loader2, Settings, Fan, Wind, ShieldCheck, Wrench, ClipboardCheck, Zap, HeadphonesIcon, CheckCircle2, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
+import { ServiceSchema } from "@/components/ServiceSchema";
 
 // Default services data for when database is empty
 const defaultServices = [
@@ -103,6 +105,37 @@ const iconMap: { [key: string]: React.ReactNode } = {
   HeadphonesIcon: <HeadphonesIcon className="w-10 h-10" />,
 };
 
+// Social icons component
+function SocialIcons() {
+  const socials = [
+    { href: "https://www.facebook.com/yourpage", label: "Facebook", icon: <Facebook className="w-6 h-6" /> },
+    { href: "https://www.instagram.com/yourpage", label: "Instagram", icon: <Instagram className="w-6 h-6" /> },
+    { href: "https://twitter.com/yourpage", label: "Twitter", icon: <Twitter className="w-6 h-6" /> },
+    { href: "https://www.linkedin.com/company/yourpage", label: "LinkedIn", icon: <Linkedin className="w-6 h-6" /> },
+  ];
+
+  return (
+    <div className="py-12 bg-muted">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-center items-center gap-6">
+          {socials.map((s) => (
+            <a
+              key={s.href}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={s.label}
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary/80 transition-all"
+            >
+              {s.icon}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Services() {
   const { data: dbServices, isLoading } = trpc.services.list.useQuery();
   
@@ -111,6 +144,15 @@ export default function Services() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans" dir="rtl">
+      <SEO
+        title="الخدمات | ECOVENT"
+        description="خدمات التهوية الشاملة من ECOVENT: التصميم الهندسي، التصنيع، التركيب، الصيانة، وحلول كفاءة الطاقة للمؤسسات"
+        keywords="خدمات تهويه، تصميم هندسي، تصنيع معدات، تركيب أنظمة تهويه، صيانة دورية، كفاءة الطاقة، ECOVENT"
+        canonical="https://www.ecovent-sa.com/services"
+      />
+      {services.map((service) => (
+        <ServiceSchema key={`schema-${service.id}`} service={service} />
+      ))}
       <Header />
       
       <main className="flex-grow pt-20">
@@ -188,12 +230,12 @@ export default function Services() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              {[
+              {([
                 { step: "01", title: "التواصل", desc: "تواصل معنا لمناقشة احتياجاتك" },
                 { step: "02", title: "الدراسة", desc: "نقوم بدراسة متطلبات مشروعك" },
                 { step: "03", title: "العرض", desc: "نقدم لك عرضاً فنياً ومالياً" },
                 { step: "04", title: "التنفيذ", desc: "ننفذ المشروع بأعلى جودة" },
-              ].map((item, index) => (
+              ]).map((item, index) => (
                 <div key={index} className="relative text-center">
                   <div className="w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center mx-auto mb-6 text-2xl font-heading font-bold">
                     {item.step}
@@ -222,14 +264,14 @@ export default function Services() {
                   نحن نفخر بتقديم خدمات استثنائية تجمع بين الخبرة العميقة والتقنيات الحديثة والالتزام بأعلى معايير الجودة.
                 </p>
                 <ul className="space-y-4">
-                  {[
+                  {([
                     "فريق هندسي متخصص بخبرة تتجاوز 15 عاماً",
                     "منتجات مصنعة محلياً بمعايير عالمية",
                     "دعم فني متواصل على مدار الساعة",
                     "أسعار تنافسية وضمان شامل",
                     "التزام بالجدول الزمني للمشاريع",
                     "شهادات جودة معتمدة دولياً"
-                  ].map((item, index) => (
+                  ]).map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
                         <CheckCircle2 className="w-4 h-4" />
@@ -277,6 +319,8 @@ export default function Services() {
           </div>
         </section>
       </main>
+
+      <SocialIcons />
 
       <Footer />
     </div>

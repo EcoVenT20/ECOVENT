@@ -18,13 +18,13 @@ const productsData: Record<string, any> = {
     fullDescription: `تُعد مراوحنا المحورية الصناعية الحل الأمثل لتوفير تهوية فعالة وموثوقة في المنشآت الصناعية الكبيرة. صُممت هذه المراوح باستخدام أحدث التقنيات لتوفير أداء عالي مع استهلاك طاقة منخفض.
 
 تتميز مراوحنا بقدرتها على تحريك كميات كبيرة من الهواء بكفاءة عالية، مما يجعلها مثالية للمستودعات والمصانع والمنشآت الصناعية التي تتطلب تهوية مستمرة وفعالة.`,
-    image: "/images/blog/.png",
+    image: "/images/blog/66.png",
     specs: {
-      flowRate: "5,000 - 200,000 م³/ساعة",
-      pressure: "حتى 1,500 باسكال",
-      diameter: "400 - 2,000 مم",
-      power: "0.5 - 75 كيلوواط",
-      temperature: "-40°C إلى +80°C",
+      flowRate: "حتى 184,000 م³/ساعة",
+      pressure: "حتى 800 باسكال",
+      diameter: "حتى 1600 مم",
+      power: "حتى 75 كيلوواط",
+      temperature: "حتى 400°C",
       noise: "أقل من 75 ديسيبل"
     },
     features: [
@@ -33,7 +33,7 @@ const productsData: Record<string, any> = {
       "ريش مصنوعة من الألومنيوم المقاوم للتآكل",
       "محركات عالية الجودة من علامات تجارية عالمية",
       "سهولة الصيانة والتركيب",
-      "ضمان لمدة 3 سنوات"
+      "ضمان لمدة2 سنوات"
     ],
     applications: [
       "المستودعات والمخازن الكبيرة",
@@ -43,8 +43,8 @@ const productsData: Record<string, any> = {
       "المنشآت الزراعية والدفيئات",
       "مراكز البيانات"
     ],
-    certifications: ["ISO 9001", "CE Mark", "SASO"],
-    deliveryTime: "2-4 أسابيع"
+    certifications: ["ISO 9001", "CE Mark", "SASO","IE3", "UL LISTED"],
+    deliveryTime: "2-3 أسابيع"
   },
   "centrifugal-fans": {
     id: "centrifugal-fans",
@@ -55,14 +55,14 @@ const productsData: Record<string, any> = {
     fullDescription: `مراوحنا الطاردة المركزية مصممة لتوفير ضغط عالي مع كفاءة استثنائية، مما يجعلها الخيار المثالي لأنظمة التكييف المركزي والتطبيقات التي تتطلب ضغطاً ثابتاً.
 
 تتميز بتصميم هندسي متقدم يضمن أداءً موثوقاً وعمراً افتراضياً طويلاً، مع الحد الأدنى من الضوضاء والاهتزاز.`,
-    image: "/images/blog/تصميم بدون عنوان.png",
+    image: "/images/blog/44.png",
     specs: {
-      flowRate: "1,000 - 50,000 م³/ساعة",
-      pressure: "حتى 3,000 باسكال",
-      diameter: "250 - 1,600 مم",
-      power: "0.75 - 55 كيلوواط",
-      temperature: "-20°C إلى +60°C",
-      noise: "أقل من 70 ديسيبل"
+      flowRate: "الى 52,000 م³/ساعة",
+      pressure: "حتى 2,500 باسكال",
+      diameter: "حتى 1000 مم",
+      power: "حتى 25  كيلوواط",
+      temperature: "حتى 400°C",
+      noise: "أقل من 120 ديسيبل"
     },
     features: [
       "تصميم هندسي محسّن لأقصى كفاءة",
@@ -70,7 +70,7 @@ const productsData: Record<string, any> = {
       "عزل صوتي متقدم",
       "نظام توازن ديناميكي دقيق",
       "متوافق مع أنظمة التحكم الذكية",
-      "ضمان لمدة 3 سنوات"
+      "ضمان لمدة 2 سنوات"
     ],
     applications: [
       "أنظمة التكييف المركزي",
@@ -80,8 +80,8 @@ const productsData: Record<string, any> = {
       "المستشفيات والمختبرات",
       "صناعات الأغذية والأدوية"
     ],
-    certifications: ["ISO 9001", "CE Mark", "SASO", "AMCA"],
-    deliveryTime: "3-5 أسابيع"
+    certifications: ["ISO 9001", "CE Mark", "SASO","IE3", "UL LISTED"],
+    deliveryTime: "2-3 أسابيع"
   },
   "exhaust-systems": {
     id: "exhaust-systems",
@@ -92,14 +92,11 @@ const productsData: Record<string, any> = {
     fullDescription: `أنظمة شفط الهواء المتكاملة من ECOVENT مصممة لإزالة الملوثات والروائح والأبخرة بكفاءة عالية، مع الحفاظ على بيئة عمل صحية وآمنة.
 
 تشمل أنظمتنا مراوح شفط قوية، مجاري هواء محكمة، وفلاتر متقدمة لضمان جودة هواء مثالية داخل المنشأة.`,
-    image: "/images/blog/smoke22.png",
+    image: "/images/blog/smoke_extraction_system_diagram.png",
     specs: {
-      flowRate: "2,000 - 100,000 م³/ساعة",
-      pressure: "حتى 2,500 باسكال",
       filterEfficiency: "99.97% (HEPA)",
-      power: "1.5 - 90 كيلوواط",
-      temperature: "-10°C إلى +120°C",
-      noise: "أقل من 80 ديسيبل"
+      Temperature: "حتى 400°C",
+      noise: "أقل من 120 ديسيبل"
     },
     features: [
       "نظام فلترة متعدد المراحل",
@@ -107,7 +104,7 @@ const productsData: Record<string, any> = {
       "مجاري هواء محكمة ومعزولة",
       "نظام تحكم ذكي بالسرعة",
       "أجهزة استشعار لجودة الهواء",
-      "ضمان لمدة 5 سنوات"
+      "ضمان لمدة 2 سنوات"
     ],
     applications: [
       "المطابخ الصناعية والتجارية",
@@ -117,8 +114,8 @@ const productsData: Record<string, any> = {
       "صناعات الطلاء والدهان",
       "محطات معالجة النفايات"
     ],
-    certifications: ["ISO 9001", "CE Mark", "SASO", "NFPA 96"],
-    deliveryTime: "4-8 أسابيع"
+    certifications: ["ISO 9001", "CE Mark", "NFPA 96","UL LISTED"],
+    deliveryTime: "2-4 أسابيع"
   },
 
      
@@ -129,17 +126,17 @@ const productsData: Record<string, any> = {
     category: "تهوية عامة",
     description: "مراوح سقف عالية الأداء مصممة للمساحات المفتوحة الكبيرة لتوفير حركة هواء مثالية.",
     fullDescription: `مراوح السقف الصناعية من ECOVENT توفر حلاً اقتصادياً وفعالاً لتحريك الهواء في المساحات الشاسعة. تتميز بتصميم ريش متطور يسمح بتدفق هواء كبير مع استهلاك طاقة منخفض جداً.`,
-    image: "/images/blog/rooftopfan2.jpg",
+    image: "/images/blog/55.png",
     specs: {
-      flowRate: "15,000 - 45,000 م³/ساعة",
-      diameter: "1,200 - 2,400 مم",
-      power: "0.1 - 0.75 كيلوواط",
-      noise: "أقل من 55 ديسيبل"
+      flowRate: "حتى 50,000م³/ساعة",
+      diameter: "الى 900 مم",
+      power: "حتى 22 كيلوواط",
+      noise: "أقل من 100 ديسيبل"
     },
     features: ["محركات موفرة للطاقة", "تشغيل هادئ جداً"],
     applications: ["المساجد", "المولات", "المستودعات المكيفة"],
-    certifications: ["ISO 9001", "SASO"],
-    deliveryTime: "1-2 أسبوع"
+    certifications: ["ISO 9001","CE", "UL LISTED"],
+    deliveryTime: "2-3 أسبوع"
   },
 
   "smoke-extraction": {
@@ -186,11 +183,10 @@ const productsData: Record<string, any> = {
     هذه الأنظمة مصممة لحماية جودة الهواء الداخلي والحفاظ على كفاءة المعدات الميكانيكية من خلال منع تراكم الأتربة والشوائب داخلها.`,
     image: "/images/blog/air.jpeg",
     specs: {
-      filterEfficiency: "تتراوح من G4 إلى H14 (HEPA)",
+      filterEfficiency: "99,7% , (HEPA)",
       flowRate: "تصميم مخصص حسب حجم النظام",
       pressureDrop: "فقد ضغط منخفض جداً لتوفير الطاقة",
       material: "ألياف زجاجية، بوليستر، أو كربون نشط",
-      temperature: "تتحمل حتى 120°C"
     },
     features: [
       "كفاءة احتجاز جزيئات تصل إلى 99.99%",
@@ -207,7 +203,6 @@ const productsData: Record<string, any> = {
       "ورش الطلاء والدهان"
     ],
     certifications: ["ISO 16890", "EN 1822", "ASHRAE 52.2"],
-    //price: "تبدأ من 450 ريال",
     deliveryTime: "1-2 أسبوع"
   }
 };

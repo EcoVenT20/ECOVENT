@@ -18,6 +18,7 @@ import ProjectDetail from "@/pages/ProjectDetail";
 import Blog from "@/pages/Blog";
 import BlogDetail from "@/pages/BlogDetail";
 import AITools from "@/pages/AITools";
+import Chat from "@/pages/Chat";
 import FAQ from "@/pages/FAQ";
 import Login from "@/pages/Login";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -32,6 +33,7 @@ function Router() {
   return (
     <Switch>
       {/* Public Routes */}
+      <Route path="/login" component={Login}  />
       <Route path={"/"} component={Home} />
       <Route path={"/about"} component={About} />
       <Route path={"/products"} component={Products} />
@@ -42,11 +44,11 @@ function Router() {
       <Route path={"/blog"} component={Blog} />
       <Route path={"/blog/:slug"} component={BlogDetail} />
       <Route path={"/ai-tools"} component={AITools} />
+      <Route path={"/chat"} component={Chat} />
       <Route path={"/faq"} component={FAQ} />
       <Route path={"/contact"} component={Contact} />
-        <Route path="/quote" component={Quote} />
-        <Route path="/sitemap" component={Sitemap} />
-        <Route path="/login" component={Login} />
+      <Route path="/quote" component={Quote} />
+      <Route path="/sitemap" component={Sitemap} />
       
       {/* Admin Routes */}
       <Route path={"/admin"} component={AdminDashboard} />

@@ -1,8 +1,10 @@
 import { Header, Footer } from "@/components/Layout";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
-import { Loader2, MapPin, Calendar, Building2 } from "lucide-react";
+import { Loader2, MapPin, Building2 } from "lucide-react";
 import { Link } from "wouter";
+import { SEO } from "@/components/SEO";
+import { ProjectSchema } from "@/components/ProjectSchema";
 
 // Default projects data for when database is empty
 const defaultProjects = [
@@ -23,7 +25,7 @@ const defaultProjects = [
     titleAr: "مجمع السيف التجاري",
     titleEn: "Al Seef Mall",
     descriptionAr: "تركيب أنظمة تهويه مركزيه وأنظمة التحكم في الدخان وأنظمة ضغط السلالم والمصاعد.",
-    clientName: "شركة السيف",
+    clientName: " شركة السيف",
     location: "الرياض",
     completionDate: "2024-03",
     imageUrl: "/images/blog/حراج الكمبيوتر.png",
@@ -35,10 +37,10 @@ const defaultProjects = [
     titleAr: "برج سنام التجاري",
     titleEn: "sanam Tower",
     descriptionAr: "توريد وتركيب أنظمة التهويه لعدد 4 باركينج وأنظمة تحكم بالدخان ل 9 أدوار وأنظمة ضغط السلالم والمصاعد",
-    clientName: "شركة العدوان للتطوير العقاري",
+    clientName: " شركة العدوان للتطوير العقاري",
     location: "الرياض",
     completionDate: "2023-12",
-    imageUrl: "/images/blog/برج سلام.png",
+    imageUrl: "/images/blog/GhQywgiWYAAYV7F.jpg",
     category: "commercial",
     isFeatured: true
   },
@@ -71,7 +73,7 @@ const defaultProjects = [
    // titleAr: "مصنع الأدوية الحيوية",
    // titleEn: "Pharmaceutical Factory",
   //  descriptionAr: "تجهيز غرف نظيفة بمعايير GMP لإنتاج الأدوية مع أنظمة ترشيح HEPA وتحكم دقيق في الضغط.",
-   // clientName: "شركة الدواء السعودية",
+   // clientName: " شركة الدواء السعودية",
    // location: "المدينة المنورة",
    // completionDate: "2023-03",
    // imageUrl: "/images/project-6.jpg",
@@ -94,8 +96,19 @@ export default function Projects() {
   // Use database projects if available, otherwise use defaults
   const projects = dbProjects && dbProjects.length > 0 ? dbProjects : defaultProjects;
 
+  const validProjects = projects.filter((project) => project?.id != null);
+
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans" dir="rtl">
+      <SEO
+        title="المشاريع | ECOVENT"
+        description="مشاريع ECOVENT الناجحة: تصميم وتنفيذ أنظمة تهوية متطورة للمجمعات التجارية والمصانع والمستودعات في السعودية"
+        keywords="مشاريع تهويه، تنفيذ أنظمة تهويه، مشاريع صناعية، مشاريع تجارية، المملكة العربية السعودية، ECOVENT"
+        canonical="https://www.ecovent-sa.com/projects"
+      />
+      {validProjects.map((project) => (
+        <ProjectSchema key={`schema-${project.id}`} project={project} />
+      ))}
       <Header />
       
       <main className="flex-grow pt-20">
@@ -147,7 +160,7 @@ export default function Projects() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project) => (
+                {validProjects.map((project) => (
                   <div key={project.id} className="group relative overflow-hidden rounded-lg shadow-lg">
                     <div className="relative h-80 overflow-hidden">
                       <img
@@ -174,10 +187,6 @@ export default function Projects() {
                             <MapPin className="w-4 h-4" />
                             {project.location}
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
-                            {project.completionDate ? new Date(project.completionDate).getFullYear() : "2024"}
-                          </span>
                         </div>
                         <h3 className="text-2xl font-heading font-bold mb-2">{project.titleAr}</h3>
                         <p className="text-sm text-gray-300 line-clamp-2 mb-4">
@@ -192,35 +201,18 @@ export default function Projects() {
                     
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-primary/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Link href={`/projects/${project.id}`}>
-                        <Button variant="secondary" className="text-primary font-bold">
-                          عرض التفاصيل
-                        </Button>
-                      </Link>
+                      {project.id ? (
+                        <Link href={`/projects/${project.id}`}>
+                          <Button variant="secondary" className="text-primary font-bold">
+                            عرض التفاصيل
+                          </Button>
+                        </Link>
+                      ) : null}
                     </div>
                   </div>
                 ))}
               </div>
             )}
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {[
-                { number: "500+", label: "مشروع منجز" },
-                { number: "15+", label: "سنة خبرة" },
-                { number: "200+", label: "عميل راضٍ" },
-                { number: "50+", label: "مهندس متخصص" },
-              ].map((stat, index) => (
-                <div key={index}>
-                  <p className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">{stat.number}</p>
-                  <p className="text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

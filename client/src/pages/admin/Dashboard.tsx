@@ -31,6 +31,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
     { href: "/admin/blog", icon: BookOpen, label: "المدونة" },
     { href: "/admin/contacts", icon: MessageSquare, label: "طلبات التواصل" },
     { href: "/admin/quotes", icon: FileText, label: "طلبات الأسعار" },
+    { href: "/admin/settings", icon: Settings, label: "الإعدادات" },
   ];
 
   const isActive = (href: string) => {
@@ -60,7 +61,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
             <span className="text-sm">العودة للموقع</span>
           </Link>
           <h2 className="text-xl font-bold mt-4">ECOVENT</h2>
-          <p className="text-sm text-gray-400"></p>
+          <p className="text-sm text-gray-400">لوحة الإدارة</p>
         </div>
 
         <nav className="p-4 space-y-2">

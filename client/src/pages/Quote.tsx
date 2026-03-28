@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Send, Loader2, CheckCircle2, FileText, Clock, Shield } from "lucide-react";
+import { SEO } from "@/components/SEO";
 
 export default function Quote() {
   const [formData, setFormData] = useState({
@@ -104,6 +105,12 @@ export default function Quote() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans" dir="rtl">
+      <SEO
+        title="طلب عرض سعر | ECOVENT"
+        description="احصل على عرض سعر مخصص من ECOVENT لمشروع أنظمة التهوية الخاص بك. نرد على طلباتك خلال 24-48 ساعة عمل"
+        keywords="عرض سعر، طلب عرض، تكاليف التهوية، استشارة مجانية، ECOVENT"
+        canonical="https://www.ecovent-sa.com/quote"
+      />
       <Header />
       
       <main className="flex-grow pt-20">
