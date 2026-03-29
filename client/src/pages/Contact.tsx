@@ -68,7 +68,7 @@ export default function Contact() {
     {
       icon: <Clock className="w-6 h-6" />,
       title: "ساعات العمل",
-      details: ["الأحد - الخميس:9 ص - 5 م", "الجمعة: مغلق"],
+      details: ["السبت - الخميس:9 ص - 5 م", "الجمعة: مغلق"],
     },
   ];
 
