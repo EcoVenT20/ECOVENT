@@ -14,7 +14,7 @@ const defaultProducts = [
     nameEn: "Centrifugal Fans",
     descriptionAr: "مراوح طرد مركزي عالية الكفاءة مصممة للتطبيقات الصناعية الثقيلة. توفر تدفق هواء قوي ومستقر مع مستويات ضوضاء منخفضة.",
     category: "industrial",
-    imageUrl: "/images/blog/11 (3).png",
+    imageUrl: "/images/blog/44.png",
     specifications: JSON.stringify({
       "معدل التدفق": "حتى 52,000 م³/ساعة",
       "الضغط": "حتى 2,500 باسكال",
@@ -28,7 +28,7 @@ const defaultProducts = [
     nameEn: "Industrial Axial Fans",
     descriptionAr: "مراوح محورية قوية للتهوية العامة والتبريد. مثالية للمستودعات والمصانع الكبيرة.",
     category: "industrial",
-    imageUrl: "/images/blog/11.png",
+    imageUrl: "/images/blog/c66.png",
     specifications: JSON.stringify({
       "معدل التدفق": "حتى 184,000 م³/ساعة",
       "الضغط": "حتى 800 باسكال",
@@ -56,7 +56,7 @@ const defaultProducts = [
     nameEn: "Roof Fans",
     descriptionAr: "مراوح سقف مقاومة للعوامل الجوية للتهوية الطبيعية والميكانيكية للمباني الصناعية والتجارية.",
     category: "commercial",
-    imageUrl: "/images/blog/11 (2).png",
+    imageUrl: "/images/blog/55.png",
     specifications: JSON.stringify({
       "معدل التدفق": "حتى 50,000 م³/ساعة",
       "الحماية": "IP55-Class F Insulation",

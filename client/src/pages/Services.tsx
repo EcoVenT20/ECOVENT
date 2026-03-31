@@ -159,7 +159,7 @@ export default function Services() {
         {/* Hero Section */}
         <section className="relative py-24 bg-[#0a1f44] text-white overflow-hidden">
           <div className="absolute inset-0 opacity-10">
-            <img src="/images/hero-bg.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/images/blog/aboutUS.jpg" alt="" className="w-full h-full object-cover" />
           </div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl">
@@ -283,7 +283,7 @@ export default function Services() {
               </div>
               <div className="relative">
                 <img 
-                  src="/images/about-img.jpg" 
+                  src="/images/blog/aboutUS.jpg" 
                   alt="Why Choose Us" 
                   className="rounded-lg shadow-2xl"
                   onError={(e) => {
