@@ -52,7 +52,7 @@ export default function Contact() {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "العنوان",
-      details: ["الرياض، المملكة العربية السعودية", "المنطقة الصناعية الثانية"],
+      details: ["الرياض، المملكة العربية السعودية", "الصناعية القديمه/مجمع الوسط"],
     },
     {
       icon: <Phone className="w-6 h-6" />,

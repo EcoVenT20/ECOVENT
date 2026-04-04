@@ -161,7 +161,7 @@ export default function About() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {["ISO 9001:2015", "ISO 14001:2015", "OHSAS 18001", "CE Mark"].map((cert, index) => (
+              {["ISO 9001:2015", "ISO 14001:2015", "OHSAS 18001", "CE Mark", "UL Listed"].map((cert, index) => (
                 <div key={index} className="bg-card p-8 rounded-lg shadow-lg border border-border text-center">
                   <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="w-10 h-10 text-primary" />
